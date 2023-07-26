@@ -6,6 +6,7 @@ import openai
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+pass_phrase = os.getenv("PASSWORD")
 
 if openai.api_key is None:
     raise ValueError("OPENAI_API_KEY environment variable not found. Please set it in the .env file.")
@@ -26,6 +27,9 @@ def read_chat():
     request_data = request.get_json()
     prompt = request_data.get("prompt", "")
     engine = request_data.get("engine", "text-davinci-003")
+    password = request_data.get("password","")
+    if password != pass_phrase: 
+        return jsonify({"Error":"Incorrect Key"})
 
     response = get_openai_response(engine, prompt)
     return jsonify({"prompt": prompt, "response": response})
