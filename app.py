@@ -7,7 +7,6 @@ import openai
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-print(openai.api_key)
 if openai.api_key is None:
     raise ValueError("OPENAI_API_KEY environment variable not found. Please set it in the .env file.")
 
@@ -41,4 +40,4 @@ def get_openai_response(engine: str, prompt: str) -> str:
         return "Error calling OpenAI API", 500
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8000)
+    app.run()
