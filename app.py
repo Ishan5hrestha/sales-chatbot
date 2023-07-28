@@ -43,7 +43,7 @@ def read_chat():
 
 def get_openai_response(engine: str, prompt: str) -> str:
     try:
-        response = openai.Completion.create(engine=engine, prompt=prompt, max_tokens=100, temperature=0.7, n=1, stop=None)
+        response = openai.Completion.create(engine=engine, prompt=prompt, max_tokens=2049, temperature=0.7, n=1, stop=None)
         return response.choices[0].text.strip()
     except Exception as e:
         return "Error calling OpenAI API", 500
